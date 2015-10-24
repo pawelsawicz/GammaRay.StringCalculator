@@ -45,18 +45,6 @@ namespace GammaRay.StringCalculator
             return result;
         }
 
-        public int Substract(int number)
-        {
-            if (number == 5)
-            {
-                return 2;
-            }
-            else
-            {
-                return 6;
-            }
-        }
-
         private int AddNumbersFromStringArray(string[] numbersToCompute)
         {
             int result = 0;
