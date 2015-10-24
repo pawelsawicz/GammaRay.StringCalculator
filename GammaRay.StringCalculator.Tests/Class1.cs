@@ -20,7 +20,7 @@ namespace GammaRay.StringCalculator.Tests
         [TestCase("", 0)]
         public void Add_ProvidedNumbersInString_ReturnValue(string input, int expectedOutput)
         {
-           
+
             var stringCalculator = new StringCalculator();
 
             var result = stringCalculator.Add(input);
@@ -37,6 +37,19 @@ namespace GammaRay.StringCalculator.Tests
             var stringCalculator = new StringCalculator();
 
             var result = stringCalculator.Add(input);
+
+            Assert.AreEqual(expectedOutput, result);
+        }
+
+        [Test]
+        [TestCase(new[] { "1", "2", "3", "4" }, 10)]
+        [TestCase(new[] { "2", "3", "10" }, 15)]
+        [TestCase(new[] { "-2", "-5", "5" }, -2)]
+        public void AddNumbersFromStringArray_ProvidedArrayOfNumbers_ReturnValue(string[] input, int expectedOutput)
+        {
+            var stringCalculator = new StringCalculator();
+
+            var result = stringCalculator.AddNumbersFromStringArray(input);
 
             Assert.AreEqual(expectedOutput, result);
         }

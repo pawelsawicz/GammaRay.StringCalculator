@@ -45,7 +45,7 @@ namespace GammaRay.StringCalculator
             return result;
         }
 
-        private int AddNumbersFromStringArray(string[] numbersToCompute)
+        public int AddNumbersFromStringArray(string[] numbersToCompute)
         {
             int result = 0;
             for (int i = 0; i < numbersToCompute.Count(); i++)
