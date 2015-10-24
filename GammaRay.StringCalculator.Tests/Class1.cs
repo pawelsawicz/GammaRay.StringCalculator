@@ -13,50 +13,32 @@ namespace GammaRay.StringCalculator.Tests
         [Test]
         [TestCase("1\n2,3\n10", 16)]
         [TestCase("1\n2,3", 6)]
+        [TestCase("\n1,2", 3)]
         [TestCase("1,2,3", 6)]
         [TestCase("1,2", 3)]
         [TestCase("1", 1)]
         [TestCase("", 0)]
         public void Add_ProvidedNumbersInString_ReturnValue(string input, int expectedOutput)
         {
-            int result = 0;
+           
+            var stringCalculator = new StringCalculator();
 
-            result = Add(input);
+            var result = stringCalculator.Add(input);
 
             Assert.AreEqual(expectedOutput, result);
         }
 
-        public int Add(string stringToParse)
+        [Test]
+        [TestCase("//;1;3;8;\n7;3", 22)]
+        [TestCase("//*1*3*4", 8)]
+        [TestCase("//;\n1;2", 3)]
+        public void Add_ProvidedNumbersInStringWithCustomDelimiters_ReturnValue(string input, int expectedOutput)
         {
-            int result = 0;
-            if (string.IsNullOrWhiteSpace(stringToParse))
-            {
-                result = 0;
-            }
-            else
-            {
-                if (stringToParse.Contains("\n"))
-                {
-                    var numbersSplitedByNewLine = stringToParse.Split(new string[] {"\n"}, StringSplitOptions.None);
-                    foreach (var s in numbersSplitedByNewLine)
-                    {
-                        var numbers = s.Split(',');
-                        for (int i = 0; i < numbers.Count(); i++)
-                        {
-                            result += int.Parse(numbers[i]);
-                        }
-                    }
-                }
-                else
-                {
-                    var numbers = stringToParse.Split(',');
-                    for (int i = 0; i < numbers.Count(); i++)
-                    {
-                        result += int.Parse(numbers[i]);
-                    }
-                }
-            }
-            return result;
+            var stringCalculator = new StringCalculator();
+
+            var result = stringCalculator.Add(input);
+
+            Assert.AreEqual(expectedOutput, result);
         }
     }
 }
